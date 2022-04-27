@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import SearchBar from './components/SearchBar/SearchBar';
 import DisplayConsoleSales from './components/DisplayConsoleSales/DisplayConsoleSales';
 
@@ -8,29 +8,32 @@ function App() {
 
   const [games, setGames] = useState([])
   const [input, setInput] = useState('')
-  let requestReload = true
 
-  // async function getAllGames() {
-  //   let response = await axios.get("https://localhost:7260/api/games");
-  //   setGames(response.data);
-  // }
+
+  useEffect(() => {
+    getAllGames();
+  }, []);
+
+  async function getAllGames() {
+    try{
+      debugger;
+      let response = await axios.get("https://localhost:7260/api/games");
+      console.log(response.data)
+      setGames(response.data);
+    } catch (ex) {
+      console.log(`ERROR in getAllGames EXCEPTION: ${ex}`)
+    }
+  }
   
   const searchInput = (event) => {
     setInput(event.target.value)
   }
 
-  // useEffect(() => {
-  //   if (requestReload) {
-  //     getAllGames();
-  //     requestReload = !requestReload
-  //   }
-  // }, [requestReload])
-
 
   return (
     <div>
-      <SearchBar searchInput={searchInput} input={input} />
-      <DisplayConsoleSales allGameData={games} input={input} />
+      {/* <SearchBar searchInput={searchInput} input={input} /> */}
+      {/* <DisplayConsoleSales allGameData={games} input={input} /> */}
     </div>
   );
 }
