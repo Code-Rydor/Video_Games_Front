@@ -1,55 +1,53 @@
-// import { Chart } from "react-google-charts";
-// import React, { useState } from 'react';
+import { Chart } from "react-google-charts";
+import React from 'react';
 
 
-// const DisplayConsoleSales = ({allGameData}) => {
+const DisplayConsoleSales = ({ games }) => {
 
-//   const [dsData, setDsData] = useState([])
-//   const [ps4Data, setPs4Data] = useState([])
-//   const [threeDSData, setThreeDSData] = useState([])
-//   const [xboxOneData, setXboxOneData] = useState([])
-//   const [wiiUData, setWiiUData] = useState([])
-//   const [ps3Data, setPs3Data] = useState([])
-//   const [xbox360Data, setXbox360Data] = useState([])
-//   const [pcData, setPcData] = useState([])
-//   const [wiiData, setWiiData] = useState([])
-//   const [psvData, setPsvData] = useState([])
-//   const [pspData, setPspData] = useState([])
+  function generateDataForChart() {
 
-//   function getDsData
+    console.log(games);
 
-//   const data = [
-//     ["Console", "Global Sales In Millions"],
-//     ["DS", dsData],
-//     ["PS4", ps4Data],
-//     ["3DS", threeDSData],
-//     ["XBox One", xboxOneData],
-//     ["WiiU", wiiUData],
-//     ["PS3", ps3Data],
-//     ["XBox360", xbox360Data],
-//     ["PC", pcData],
-//     ["Wii", wiiData],
-//     ["PSV", psvData],
-//     ["PSP", pspData],
+    let filteredGames = games.filter(game => game.year >= 2013)
+
+    console.log('Filtered Games', filteredGames)
+
+    let platforms = filteredGames.map(game => {
+      return game.platform
+    });
+
+    console.log('Platforms', platforms)
+
+    let distinctPlatforms = [...new Set(platforms)]
+
+    console.log('Distinct Platform', distinctPlatforms)
+
+    let platformArrays = distinctPlatforms.map(platform => {
+
+      let allGamesForPlatform = filteredGames.filter(game => game.platform == platform);
+      //22min 48secs in video
+
+      return [platform, 10, "silver"]
+    });
+
+    console.log("Platform Arrays", platformArrays)
+
     
-//   ];
-
-//   const options = {
-//     title: "Global Game Sales Per Console",
-//     is3D: true 
-//   };
-
-
-// return (
-//     <Chart
-//       chartType="PieChart"
-//       data={data}
-//       options={options}
-//       width={"100%"}
-//       height={"400px"}
-//     />
-//   );
-// }
-
+    const data = [
+        ["Platform", "Sales", { role: "style" }],
+        ...platformArrays
+      ];
+    
+      console.log("Data", data)
+      
+      return data;
+    }
+  
+  
+    return (
+      <Chart chartType="ColumnChart" width="100%" height="400px" data={generateDataForChart()} />
+    );
+  
+}
  
-// export default DisplayConsoleSales;
+export default DisplayConsoleSales;

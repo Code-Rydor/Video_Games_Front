@@ -16,24 +16,23 @@ function App() {
 
   async function getAllGames() {
     try{
-      debugger;
+      //debugger;
       let response = await axios.get("https://localhost:7260/api/games");
-      console.log(response.data)
       setGames(response.data);
     } catch (ex) {
       console.log(`ERROR in getAllGames EXCEPTION: ${ex}`)
     }
   }
   
-  const searchInput = (event) => {
-    setInput(event.target.value)
-  }
+  // const searchInput = (event) => {
+  //   setInput(event.target.value)
+  // }
 
 
   return (
     <div>
       {/* <SearchBar searchInput={searchInput} input={input} /> */}
-      {/* <DisplayConsoleSales allGameData={games} input={input} /> */}
+      <DisplayConsoleSales games={games} />
     </div>
   );
 }
