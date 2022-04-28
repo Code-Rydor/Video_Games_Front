@@ -6,7 +6,7 @@ const DisplayConsoleSales = ({ games }) => {
 
   function generateDataForChart() {
 
-    // console.log(games);
+     console.log(games);
 
     let filteredGames = games.filter(game => game.year >= 2013)
 
@@ -47,7 +47,7 @@ const DisplayConsoleSales = ({ games }) => {
     
     
     const data = [
-        ["Platform", "Sales (in millions)", { role: "style" }],
+        ["Platform", "Sales (in millions) since 2013", { role: "style" }],
         ...platformArrays
       ];
     

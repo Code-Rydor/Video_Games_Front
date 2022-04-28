@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const SearchBar = ({searchInput, input}) => {
+import DisplaySearchedGames from '../DisplaySearchedGames/DisplaySearchedGames';
+
+
+const SearchBar = ({ searchInput, input }) => {
+    
+    const [searchTerm, setSearchTerm] = useState("");
+
+    // function handleSubmit(event) {
+    //     event.preventDefault();
+    //     getGameById(searchTerm)
+    // }
+    function handleSubmit(event) {
+        event.preventDefault();
+        // <DisplaySearchedGames />
+    }
+
     return ( 
         <div>
-            <form>
-                <input type='text' value={input} onSubmit={(event) => searchInput(event)}/>
+            <form onsubmit={handleSubmit}>
+                <input type='text' value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}/>
                 <button type='submit'>Search</button>
             </form>
         </div>
