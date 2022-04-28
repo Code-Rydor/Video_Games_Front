@@ -24,14 +24,27 @@ const DisplayConsoleSales = ({ games }) => {
 
     let platformArrays = distinctPlatforms.map(platform => {
 
-      let allGamesForPlatform = filteredGames.filter(game => game.platform == platform);
-      //22min 48secs in video
+      let allGamesForPlatform = filteredGames.filter(game => game.platform === platform);
+      
+      console.log("All games for platform:", allGamesForPlatform)
 
-      return [platform, 10, "silver"]
+      let globalSalesForPlatform = allGamesForPlatform.map(game => {
+        return game.globalSales
+      });
+
+      console.log("Global Sales", globalSalesForPlatform)
+
+      let initialValue = 0;
+      let sumWithInitial = globalSalesForPlatform.reduce(
+        (previousValue, currentValue) => previousValue + currentValue, initialValue).toFixed(2);// sumWithInitial returns a 16 digit decimal
+                                                                                                // .toFixed(2) cuts number off at 2 decimals
+      console.log("Sum", sumWithInitial);
+      
+      return [platform, sumWithInitial, "silver"]
     });
 
     console.log("Platform Arrays", platformArrays)
-
+    
     
     const data = [
         ["Platform", "Sales", { role: "style" }],
