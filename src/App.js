@@ -1,8 +1,6 @@
 
 // (5 points) As a developer, I want to build an aesthetically pleasing user interface.
-// (10 points) As a video game enthusiast, I want to be able to search for a game and see its details. 
-// (10 points) As a video game enthusiast, I want to be able to search for a game and see a data visualization (chart or graph) 
-//             of the number of copies sold per console. 
+
 // (5 points) As a developer, I want to write a sample evaluation question of my own that can be answered by analysis of the 
 //            API data. 
 
@@ -18,7 +16,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SearchBar from './components/SearchBar/SearchBar';
 import DisplayConsoleSales from './components/DisplayConsoleSales/DisplayConsoleSales';
-import DisplayGameDetails from './components/DisplayGameDetails/DisplayGameDetails';
 import DisplaySearchedGames from './components/DisplaySearchedGames/DisplaySearchedGames';
 
 
@@ -28,8 +25,6 @@ function App() {
   const [input, setInput] = useState('')
   const [filteredGames, setFilteredGames] = useState([])
   const [toggle, setToggle] = useState(false)
-  // const [gameId, setGameId] = useState()
-
 
   useEffect(() => {
     getAllGames();
@@ -54,7 +49,6 @@ function App() {
     setGames(filteredResults)
   }
 
-
   return (
     <div>
       <SearchBar handleSubmit={handleSubmit} input={input} setInput={setInput}/>
@@ -65,18 +59,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-  // async function getGameById(request) {
-  //   try {
-  //     debugger;
-  //     let response = await axios.get(`https://localhost:7260/api/games/${request}`);
-  //     console.log("getGameById function response data", response.data)
-  //     setGameId(response.data.id);
-  //   } catch (ex) {
-  //     console.log(`ERROR in getAllGames EXCEPTION: ${ex}`);
-  //   }
-  // }

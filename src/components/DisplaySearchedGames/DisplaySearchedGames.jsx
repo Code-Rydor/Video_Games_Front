@@ -1,5 +1,5 @@
-const DisplaySearchedGames = ({ filteredGames, input }) => {  //useEffect is how I render an empty array first and then populate with
-    console.log(filteredGames);                               //searched game... somehow
+const DisplaySearchedGames = ({ filteredGames}) => {
+    console.log(filteredGames);
     return (
         <table>
             <thead>

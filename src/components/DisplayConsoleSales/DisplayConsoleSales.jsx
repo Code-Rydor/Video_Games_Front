@@ -8,7 +8,6 @@ const DisplayConsoleSales = ({ toggle, games }) => {
 
     console.log(games);
 
-    debugger
     let gameList;
     if (toggle === false) {
       gameList = games.filter(game => game.year >= 2013)
@@ -16,57 +15,38 @@ const DisplayConsoleSales = ({ toggle, games }) => {
       gameList = games
      }
 
-    // console.log('Filtered Games', filteredGames)
-
     let platforms = gameList.map(game => {
       return game.platform
     });
 
-    // console.log('Platforms', platforms)
-
     let distinctPlatforms = [...new Set(platforms)]
-
-    // console.log('Distinct Platform', distinctPlatforms)
 
     let platformArrays = distinctPlatforms.map(platform => {
 
       let allGamesForPlatform = gameList.filter(game => game.platform === platform);
-      
-      // console.log("All games for platform:", allGamesForPlatform)
 
       let globalSalesForPlatform = allGamesForPlatform.map(game => {
         return game.globalSales
       });
 
-      // console.log("Global Sales", globalSalesForPlatform)
-
       let initialValue = 0;
       let sumWithInitial = globalSalesForPlatform.reduce(
-        (previousValue, currentValue) => previousValue + currentValue, initialValue).toFixed(2);// sumWithInitial returns a 16 digit decimal
-                                                                                                // .toFixed(2) cuts number off at 2 decimals
-      // console.log("Sum", sumWithInitial);
+        (previousValue, currentValue) => previousValue + currentValue, initialValue).toFixed(2);
       
       return [platform, parseFloat(sumWithInitial) , "blue"]
     });
-
-    // console.log("Platform Arrays", platformArrays)
-    
     
     const data = [
         ["Platform", "Sales (in millions) since 2013", { role: "style" }],
         ...platformArrays
       ];
-    
-      // console.log("Data", data)
       
       return data;
     }
   
-  
     return (
       <Chart chartType="ColumnChart" width="100%" height="400px" data={generateDataForChart()} />
-    );
-  
+    ); 
 }
  
 export default DisplayConsoleSales;

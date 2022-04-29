@@ -1,17 +1,7 @@
-import React, { useState } from 'react';
-
-import DisplaySearchedGames from '../DisplaySearchedGames/DisplaySearchedGames';
-
+import React from 'react';
 
 const SearchBar = ({handleSubmit, input , setInput}) => {
     
-    const [searchTerm, setSearchTerm] = useState("");
-
-
-    // function handleSubmit(event) {
-    //     event.preventDefault();
-    // }
-
     return ( 
         <div>
             <form onSubmit ={(e)=>handleSubmit(e)}>
@@ -23,12 +13,3 @@ const SearchBar = ({handleSubmit, input , setInput}) => {
 }
  
 export default SearchBar;
-
-
-
-
-
-    // function handleSubmit(event) {
-    //     event.preventDefault();
-    //     getGameById(searchTerm)
-    // }
