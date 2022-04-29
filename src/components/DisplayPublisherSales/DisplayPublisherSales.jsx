@@ -25,24 +25,22 @@ const DisplayPublisherSales = ({ games }) => {
             let sumWithInitial = globalSalesForPublisher.reduce(
                 (previousValue, currentValue) => previousValue + currentValue, initialValue).toFixed(2);
 
-            return [publisher, parseFloat(sumWithInitial), "blue"]
+            return [publisher, parseFloat(sumWithInitial), "black"]
         });
 
         const data = [
             ["Publisher", "Sales", { role: "style" }],
             ...publisherArrays
-        ];
-
-        console.log('Data', data);
-            
+        ];          
         return data;
     }
 
-
-
     return ( 
-        <Chart chartType="ColumnChart" width="100%" height="400px" data={generatePublisherData()} />
-
+        <div>
+            <h2>Global Sales Per Publisher</h2>
+            <Chart chartType="ColumnChart" width="100%" height="400px" data={generatePublisherData()} />
+        </div>
+        
      );
 }
  

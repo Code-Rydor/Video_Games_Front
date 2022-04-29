@@ -31,23 +31,21 @@ const DisplayConsoleSales = ({ toggle, games }) => {
       let sumWithInitial = globalSalesForPlatform.reduce(
         (previousValue, currentValue) => previousValue + currentValue, initialValue).toFixed(2);
       
-      return [platform, parseFloat(sumWithInitial) , "blue"]
+      return [platform, parseFloat(sumWithInitial) , "black"]
     });
     
     const data = [
         ["Platform", "Sales (in millions)", { role: "style" }],
         ...platformArrays
-      ];
-      
+      ];      
       return data;
     }
   
   return (
     <div>
-      <h1>Global Sales Per Console</h1>
+      <h2>Global Sales Per Console</h2>
       <Chart chartType="ColumnChart" width="100%" height="400px" data={generateDataForChart()} />
     </div>
-
     ); 
 }
  

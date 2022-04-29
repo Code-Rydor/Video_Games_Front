@@ -46,8 +46,7 @@ const DisplayNAYearlySales = ({toggle, games}) => {
         <div>
             <h2>Yearly Sales In North America</h2>
             <Chart chartType="ColumnChart" width="100%" height="400px" data={generateYearlySales()} />
-        </div>
-        
+        </div>      
     );
 }
  

@@ -1,14 +1,14 @@
 const DisplaySearchedGames = ({ filteredGames}) => {
     console.log(filteredGames);
     return (
-        <table>
+        <table className="table table-hover">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Platform</th>
-                    <th>Release Year</th>
-                    <th>Publisher</th>
-                    <th>Genre</th>
+                    <th scope="row">Title</th>
+                    <th scope="row">Platform</th>
+                    <th scope="row">Release Year</th>
+                    <th scope="row">Publisher</th>
+                    <th scope="row">Genre</th>
                 </tr>
             </thead>
             <tbody>

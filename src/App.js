@@ -1,23 +1,11 @@
-
-// (5 points) As a developer, I want to build an aesthetically pleasing user interface.
-
-// (5 points) As a developer, I want to write a sample evaluation question of my own that can be answered by analysis of the 
-//            API data. 
-
-// Question: Since 2010, what year had the most video games sales in North America
-
-// (10 points) As a video game enthusiast, I want to see a data visualization of the analyzed data regarding the developer 
-//             created sample evaluation question.
-// Bonus:
-// (5 points) As a video game enthusiast, I want to see a data visualization of which publishers have had the most success per 
-//            console.
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SearchBar from './components/SearchBar/SearchBar';
 import DisplayConsoleSales from './components/DisplayConsoleSales/DisplayConsoleSales';
 import DisplaySearchedGames from './components/DisplaySearchedGames/DisplaySearchedGames';
 import DisplayPublisherSales from './components/DisplayPublisherSales/DisplayPublisherSales';
+import DisplayNAYearlySales from './components/DisplayNAYearlySales/DisplayNAYearlySales';
+import "bootswatch/dist/darkly/bootstrap.min.css";
 
 function App() {
 
@@ -51,10 +39,11 @@ function App() {
 
   return (
     <div>
-      <SearchBar handleSubmit={handleSubmit} input={input} setInput={setInput}/>
-      <DisplayConsoleSales toggle={toggle} games={games} />
+      <SearchBar handleSubmit={handleSubmit} input={input} setInput={setInput} />
       <DisplaySearchedGames filteredGames={filteredGames} input={input} />
-      {/* <DisplayPublisherSales games={games} /> */}
+      <DisplayConsoleSales toggle={toggle} games={games} />
+      <DisplayNAYearlySales toggle={toggle} games={games} />
+      <DisplayPublisherSales games={games} />
     </div>
   );
 }
