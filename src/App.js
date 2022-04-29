@@ -1,3 +1,19 @@
+
+// (5 points) As a developer, I want to build an aesthetically pleasing user interface.
+// (10 points) As a video game enthusiast, I want to be able to search for a game and see its details. 
+// (10 points) As a video game enthusiast, I want to be able to search for a game and see a data visualization (chart or graph) 
+//             of the number of copies sold per console. 
+// (5 points) As a developer, I want to write a sample evaluation question of my own that can be answered by analysis of the 
+//            API data. 
+
+// Question: Since 2010, what year had the most video games sales in North America
+
+// (10 points) As a video game enthusiast, I want to see a data visualization of the analyzed data regarding the developer 
+//             created sample evaluation question.
+// Bonus:
+// (5 points) As a video game enthusiast, I want to see a data visualization of which publishers have had the most success per 
+//            console.
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SearchBar from './components/SearchBar/SearchBar';
@@ -10,6 +26,8 @@ function App() {
 
   const [games, setGames] = useState([])
   const [input, setInput] = useState('')
+  const [filteredGames, setFilteredGames] = useState([])
+  const [toggle, setToggle] = useState(false)
   // const [gameId, setGameId] = useState()
 
 
@@ -19,7 +37,6 @@ function App() {
 
   async function getAllGames() {
     try{
-      //debugger;
       let response = await axios.get("https://localhost:7260/api/games");
       setGames(response.data);
     } catch (ex) {
@@ -27,6 +44,32 @@ function App() {
     }
   }
   
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    let filteredResults = games.filter((game) => {
+      if(game.name.toLowerCase() == input.toLowerCase()) return true
+    })
+    setToggle(true)
+    setFilteredGames(filteredResults)
+    setGames(filteredResults)
+  }
+
+
+  return (
+    <div>
+      <SearchBar handleSubmit={handleSubmit} input={input} setInput={setInput}/>
+      <DisplayConsoleSales toggle={toggle} games={games} />
+      <DisplaySearchedGames filteredGames={filteredGames} input={input} />
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
   // async function getGameById(request) {
   //   try {
   //     debugger;
@@ -37,20 +80,3 @@ function App() {
   //     console.log(`ERROR in getAllGames EXCEPTION: ${ex}`);
   //   }
   // }
-
-
-  const searchInput = (event) => {
-    setInput(event.target.value)
-  }
-
-
-  return (
-    <div>
-      <SearchBar searchInput={searchInput} input={input} />
-      {/* <DisplayConsoleSales games={games} /> */}
-      <DisplaySearchedGames games={games} input={input} />
-    </div>
-  );
-}
-
-export default App;

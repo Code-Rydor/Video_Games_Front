@@ -1,5 +1,5 @@
-const DisplaySearchedGames = ({ games, input }) => {  //useEffect is how I render an empty array first and then populate with
-    console.log(games);                               //searched game... somehow
+const DisplaySearchedGames = ({ filteredGames, input }) => {  //useEffect is how I render an empty array first and then populate with
+    console.log(filteredGames);                               //searched game... somehow
     return (
         <table>
             <thead>
@@ -12,18 +12,13 @@ const DisplaySearchedGames = ({ games, input }) => {  //useEffect is how I rende
                 </tr>
             </thead>
             <tbody>
-                {games
-                    .filter(function (el) {
-                        if (el.name.includes(input)){// || el.platform.includes(`${input}`) || el.release_year.includes(`${input}`) || el.publisher.includes(`${input}`) || el.genre.includes(`${input}`)) {
-                            return true;
-                        }
-                    })
+                {filteredGames
                     .map((game, index) => {
                         return (
                             <tr key={index}>
                                 <td>{game.name}</td>
                                 <td>{game.platform}</td>
-                                <td>{game.release_year}</td>
+                                <td>{game.year}</td>
                                 <td>{game.publisher}</td>
                                 <td>{game.genre}</td>
                             </tr>

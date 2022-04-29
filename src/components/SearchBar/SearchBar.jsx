@@ -3,23 +3,19 @@ import React, { useState } from 'react';
 import DisplaySearchedGames from '../DisplaySearchedGames/DisplaySearchedGames';
 
 
-const SearchBar = ({ searchInput, input }) => {
+const SearchBar = ({handleSubmit, input , setInput}) => {
     
     const [searchTerm, setSearchTerm] = useState("");
 
+
     // function handleSubmit(event) {
     //     event.preventDefault();
-    //     getGameById(searchTerm)
     // }
-    function handleSubmit(event) {
-        event.preventDefault();
-        // <DisplaySearchedGames />
-    }
 
     return ( 
         <div>
-            <form onsubmit={handleSubmit}>
-                <input type='text' value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}/>
+            <form onSubmit ={(e)=>handleSubmit(e)}>
+                <input type='text' value={input} onChange={(event) => setInput(event.target.value)}/>
                 <button type='submit'>Search</button>
             </form>
         </div>
@@ -27,3 +23,12 @@ const SearchBar = ({ searchInput, input }) => {
 }
  
 export default SearchBar;
+
+
+
+
+
+    // function handleSubmit(event) {
+    //     event.preventDefault();
+    //     getGameById(searchTerm)
+    // }

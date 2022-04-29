@@ -2,17 +2,23 @@ import { Chart } from "react-google-charts";
 import React from 'react';
 
 
-const DisplayConsoleSales = ({ games }) => {
+const DisplayConsoleSales = ({ toggle, games }) => {
 
   function generateDataForChart() {
 
-     console.log(games);
+    console.log(games);
 
-    let filteredGames = games.filter(game => game.year >= 2013)
+    debugger
+    let gameList;
+    if (toggle === false) {
+      gameList = games.filter(game => game.year >= 2013)
+    } else{
+      gameList = games
+     }
 
     // console.log('Filtered Games', filteredGames)
 
-    let platforms = filteredGames.map(game => {
+    let platforms = gameList.map(game => {
       return game.platform
     });
 
@@ -24,7 +30,7 @@ const DisplayConsoleSales = ({ games }) => {
 
     let platformArrays = distinctPlatforms.map(platform => {
 
-      let allGamesForPlatform = filteredGames.filter(game => game.platform === platform);
+      let allGamesForPlatform = gameList.filter(game => game.platform === platform);
       
       // console.log("All games for platform:", allGamesForPlatform)
 
