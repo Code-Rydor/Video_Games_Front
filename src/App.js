@@ -17,7 +17,7 @@ import axios from 'axios';
 import SearchBar from './components/SearchBar/SearchBar';
 import DisplayConsoleSales from './components/DisplayConsoleSales/DisplayConsoleSales';
 import DisplaySearchedGames from './components/DisplaySearchedGames/DisplaySearchedGames';
-
+import DisplayPublisherSales from './components/DisplayPublisherSales/DisplayPublisherSales';
 
 function App() {
 
@@ -54,6 +54,7 @@ function App() {
       <SearchBar handleSubmit={handleSubmit} input={input} setInput={setInput}/>
       <DisplayConsoleSales toggle={toggle} games={games} />
       <DisplaySearchedGames filteredGames={filteredGames} input={input} />
+      {/* <DisplayPublisherSales games={games} /> */}
     </div>
   );
 }

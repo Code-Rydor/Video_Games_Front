@@ -6,8 +6,6 @@ const DisplayConsoleSales = ({ toggle, games }) => {
 
   function generateDataForChart() {
 
-    console.log(games);
-
     let gameList;
     if (toggle === false) {
       gameList = games.filter(game => game.year >= 2013)
@@ -37,15 +35,19 @@ const DisplayConsoleSales = ({ toggle, games }) => {
     });
     
     const data = [
-        ["Platform", "Sales (in millions) since 2013", { role: "style" }],
+        ["Platform", "Sales (in millions)", { role: "style" }],
         ...platformArrays
       ];
       
       return data;
     }
   
-    return (
+  return (
+    <div>
+      <h1>Global Sales Per Console</h1>
       <Chart chartType="ColumnChart" width="100%" height="400px" data={generateDataForChart()} />
+    </div>
+
     ); 
 }
  
